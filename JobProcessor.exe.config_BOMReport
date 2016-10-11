@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <sectionGroup name="connectivityExplorer">
+      <section name="extHandlers" type="Connectivity.Explorer.Framework.ExtHandlerConfigurationSectionHandler, Connectivity.Explorer.Framework" />
+      <section name="jobHandlers" type="Connectivity.JobHandlers.Services.Objects.JobHandlerConfigurationSectionHandler, Connectivity.JobProcessor.Delegate" />
+      <section name="syncPropertiesPostJobExtensions" type="Connectivity.Explorer.JobHandler.SyncProperties.SynchPropertiesConfigurationSectionHandler, Connectivity.Explorer.JobHandlerSyncProperties" />
+    </sectionGroup>
+    <section name="microsoft.web.services3" type="Microsoft.Web.Services3.Configuration.WebServicesConfiguration, Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <sectionGroup name="Connectivity.Request.Runtime" type="System.Configuration.ConfigurationSectionGroup, System.Configuration">
+      <section name="Request" type="Connectivity.Request.Runtime.Configuration.RequestLibraryConfig, Connectivity.Request.Runtime" />
+      <section name="RuntimeService" type="Connectivity.Request.Runtime.Configuration.RuntimeServiceConfig, Connectivity.Request.Runtime" />
+      <sectionGroup name="RuntimeServiceConfig" type="System.Configuration.ConfigurationSectionGroup, System.Configuration">
+        <section name="ObjectResolverService" type="Connectivity.Request.Common.Configuration.ObjectResolverServiceConfig, Connectivity.Request.Common" />
+        <section name="SubstitutionService" type="Connectivity.Request.Common.Configuration.SubstitutionServiceConfig, Connectivity.Request.Common" />
+        <section name="PathSerializationService" type="Connectivity.Request.Common.Configuration.PathSerializationServiceConfig, Connectivity.Request.Common" />
+        <section name="ExtensionHandlerService" type="Connectivity.Request.Document.Configuration.ExtensionHandlerServiceConfig, Connectivity.Request.Document" />
+      </sectionGroup>
+    </sectionGroup>
+    <section name="ResolveExtensionHandlerService" type="Connectivity.Resolve.ResolveHelper.ExtHandler, Connectivity.Resolve.ResolveHelper" />
+    <section name="enterpriseLibrary.ConfigurationSource" requirePermission="true" type="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ConfigurationSourceSection,  Microsoft.Practices.EnterpriseLibrary.Common,  Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+  </configSections>
+  <enterpriseLibrary.ConfigurationSource selectedSource="Logging Configuration Source">
+    <sources>
+      <add name="Logging Configuration Source" filePath="logging_JobProcessor.config" type="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.FileConfigurationSource,  Microsoft.Practices.EnterpriseLibrary.Common,  Version=4.0.0.0,  Culture=neutral,  PublicKeyToken=31bf3856ad364e35" />
+    </sources>
+  </enterpriseLibrary.ConfigurationSource>
+  <connectivityExplorer>
+    <extHandlers>
+      <!-- Inventor extension handlers -->
+      <extHandler command="Document.PropertyUpdate" handler="Connectivity.Explorer.ExtensionHandlerInventor.InventorExtHandler, Connectivity.Explorer.ExtensionHandlerInventor" extensions="ipt,iam,ipn,idw,designdocument,INVENTOR" priority="1" />
+      <!-- Autocad extension handlers -->
+      <extHandler command="Document.PropertyUpdate" handler="Connectivity.Explorer.ExtensionHandlerAutocad.AutocadExtHandler, Connectivity.Explorer.ExtensionHandlerAutocad" extensions="dwg,dxf,AutoCAD" priority="2" />
+      <!-- Office extension handlers -->
+      <extHandler command="Document.PropertyUpdate" handler="Connectivity.Explorer.ExtensionHandlerOffice.OLEExtHandler, Connectivity.Explorer.ExtensionHandler.Office" extensions="doc,dot,xls,xlt,xla,ppt,pot,ppa,mpp,mpt,vsd,vst" />
+      <extHandler command="Document.PropertyUpdate" handler="Connectivity.Explorer.ExtensionHandlerOffice.OpenOfficeExtHandler, Connectivity.Explorer.ExtensionHandler.Office" extensions="docx,dotx,xlsx,xltx,xlax,pptx,potx,ppax,mppx,mptx,vsdx,vstx" />
+    </extHandlers>
+    <jobHandlers>
+      <jobHandler class="Autodesk.Vault.DWF.Create.iam" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.ipt" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.ipn" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.idw" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.dwg" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.rvt" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.rfa" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.DWF.Create.rte" handler="Connectivity.Explorer.JobHandlerDwfPublish.DwfJobHandler, Connectivity.Explorer.JobHandlerDwfPublish" />
+      <jobHandler class="Autodesk.Vault.SyncProperties" handler="Connectivity.Explorer.JobHandler.SyncProperties.ExtHandlerSyncPropertiesJobHandler, Connectivity.Explorer.JobHandlerSyncProperties" />
+      <!--Update revision block handlers -->
+      <jobHandler class="Autodesk.Vault.UpdateRevisionBlock.idw" handler="Connectivity.Explorer.JobHandlerUpdateRevisionBlock.UpdateRevisionBlockJobHandler, Connectivity.Explorer.JobHandlerUpdateRevisionBlock" />
+      <jobHandler class="Autodesk.Vault.UpdateRevisionBlock.dwg" handler="Connectivity.Explorer.JobHandlerUpdateRevisionBlock.UpdateRevisionBlockJobHandler, Connectivity.Explorer.JobHandlerUpdateRevisionBlock" />
+      <!--revit add sheets creation hanlder -->
+      <jobHandler class="Autodesk.Vault.AddSheetsPSGPath.rvt" handler="Connectivity.Explorer.JobHandlerAddSheets.AddSheetsJobHandler, Connectivity.Explorer.JobHandlerAddSheets" />
+      <jobHandler class="autodesk.vault.projectsync.share.2" handler="Connectivity.Explorer.JobHandler.Buzzsaw.Push, Autodesk.Vault.Buzzsaw.JobHandler" />
+      <jobHandler class="autodesk.vault.projectsync.sharewithdependencies" handler="Connectivity.Explorer.JobHandler.Buzzsaw.PushWithDependencies, Autodesk.Vault.Buzzsaw.JobHandler" />
+      <jobHandler class="autodesk.vault.projectsync.update.2" handler="Connectivity.Explorer.JobHandler.Buzzsaw.Pull, Autodesk.Vault.Buzzsaw.JobHandler" />
+      <jobHandler class="autodesk.vault.projectsync.add.2" handler="Connectivity.Explorer.JobHandler.Buzzsaw.Add, Autodesk.Vault.Buzzsaw.JobHandler" />
+      <jobHandler class="autodesk.vault.projectsync.sync.2" handler="Connectivity.Explorer.JobHandler.Buzzsaw.Sync, Autodesk.Vault.Buzzsaw.JobHandler" />
+      <!--BOMReport Job extension handler-->
+      <jobHandler class="Autodesk.BOMReport" handler="Autodesk.Connectivity.JobProcessor.Extensibility.IJobHandler, Autodesk.Connectivity.JobProcessor.Extensibility"/>
+    </jobHandlers>
+    <syncPropertiesPostJobExtensions>
+      <queueDwfCreateJob extension=".iam" />
+      <queueDwfCreateJob extension=".ipt" />
+      <queueDwfCreateJob extension=".ipn" />
+      <queueDwfCreateJob extension=".idw" />
+      <queueDwfCreateJob extension=".dwg" />
+      <queueDwfCreateJob extension=".rvt" />
+      <queueDwfCreateJob extension=".rfa" />
+      <queueDwfCreateJob extension=".rte" />
+      <queueUpdateRevisionBlockJob extension=".idw" />
+      <queueUpdateRevisionBlockJob extension=".dwg" />
+    </syncPropertiesPostJobExtensions>
+  </connectivityExplorer>
+  <Connectivity.Request.Runtime>
+    <Request>
+      <Libraries>
+        <Library Name="Common Requests" Assembly="Connectivity.Request.Common" />
+        <Library Name="Vault Requests" Assembly="Connectivity.Request.Vault" />
+        <Library Name="Foundation Requests" Assembly="Connectivity.Request.Foundation" />
+        <Library Name="Document Requests" Assembly="Connectivity.Request.Document" />
+        <Library Name="Inventor ExtensionHandler" Assembly="Connectivity.Request.ExtensionHandler.Inventor" />
+      </Libraries>
+    </Request>
+    <RuntimeService>
+      <Services>
+        <!-- Connectivity.Request.Runtime Services -->
+        <Service Name="Request Registry Service" Interface="Connectivity.Request.Runtime.Services.IRequestRegistryService, Connectivity.Request.Runtime" Type="Connectivity.Request.Runtime.Services.RequestRegistryService, Connectivity.Request.Runtime" />
+        <Service Name="Request Caching Service" Interface="Connectivity.Request.Runtime.Services.IRequestCacheService, Connectivity.Request.Runtime" Type="Connectivity.Request.Runtime.Services.RequestCacheService, Connectivity.Request.Runtime" />
+        <!-- Connectivity.Request.Common Services -->
+        <Service Name="Validate Name Service" Interface="Connectivity.Request.Common.Services.IValidateName, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.ValidateName, Connectivity.Request.Common" />
+        <Service Name="Currency Change Service" Interface="Connectivity.Request.Common.Services.ICurrencyChangeService, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.CurrencyChangeService, Connectivity.Request.Common" />
+        <Service Name="Object Resolver Service" Interface="Connectivity.Request.Common.Services.IObjectResolverService, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.ObjectResolverService, Connectivity.Request.Common" />
+        <Service Name="Substitution Service" Interface="Connectivity.Request.Common.Services.ISubstitutionService, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.SubstitutionService, Connectivity.Request.Common" />
+        <Service Name="Temporary Directory Service" Interface="Connectivity.Request.Common.Services.ITemporaryDirectoryService, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.TemporaryDirectoryService, Connectivity.Request.Common" />
+        <Service Name="Path Serialization Service" Interface="Connectivity.Request.Common.Services.IPathSerializationService, Connectivity.Request.Common" Type="Connectivity.Request.Common.Services.PathSerializationService, Connectivity.Request.Common" />
+        <!-- Connectivity.Request.Vault Services -->
+        <Service Name="Vault Caching Service" Interface="Connectivity.Request.Vault.Services.IVaultCacheService, Connectivity.Request.Vault" Type="Connectivity.Request.Vault.Services.VaultCacheService, Connectivity.Request.Vault" />
+        <!-- Connectivity.Request.Document Services -->
+        <Service Name="Extension Handler Service" Interface="Connectivity.Request.Document.Services.IExtensionHandlerManager, Connectivity.Request.Document" Type="Connectivity.Request.Document.Services.ExtensionHandlerManager, Connectivity.Request.Document" />
+      </Services>
+    </RuntimeService>
+    <RuntimeServiceConfig>
+      <!-- List of registered Path Serializers to be loaded by the 'Path Serialization Service' -->
+      <PathSerializationService>
+        <PathSerializers>
+          <!-- CommonPathSerializer -->
+          <PathSerializer Type="Connectivity.Request.Common.Services.CommonPathSerializer, Connectivity.Request.Common">
+            <!-- SubstsItem Values can be a hard coded string OR include %appSettings.[key]% where [key] is a <appSetting> key in this .config file -->
+            <SubstItems>
+              <SubstItem Key="ApplName" Value="%appSettings.ApplName%" />
+            </SubstItems>
+          </PathSerializer>
+          <!-- VaultPathSerializer -->
+          <PathSerializer Type="Connectivity.Request.Vault.Services.VaultPathSerializer, Connectivity.Request.Vault">
+            <!-- SubstsItem Values can be a hard coded string OR include
+                 %VaultName% or %ServerName% which represent the vault connection data used during the executing request.
+                 %ServerNamespace% represents the web services namespace 
+                 Note: It's important to keep the long (measured in segments) key value pairs prior to the short ones,
+                 for example, keep "Servers\ServerNamespace\ServerName" prior to "Servers\ServerName" -->
+            <SubstItems>
+              <SubstItem Key="Servers\ServerNamespace\ServerName" Value="Servers\%ServerNamespace%\%ServerName%" />
+              <SubstItem Key="Servers\ServerName" Value="Servers\%ServerName%" />
+              <SubstItem Key="Vaults\VaultName" Value="Vaults\%VaultName%" />
+              <SubstItem Key="ServerNamespace" Value="%ServerNamespace%" />
+            </SubstItems>
+          </PathSerializer>
+        </PathSerializers>
+      </PathSerializationService>
+      <!-- List of registered ObjectResolvers to be loaded by the 'Object Resolver Service' -->
+      <ObjectResolverService>
+        <ObjectResolvers>
+          <ObjectResolver Type="Connectivity.Request.Vault.ObjectResolvers.GroupResolver, Connectivity.Request.Vault" />
+          <ObjectResolver Type="Connectivity.Request.Vault.ObjectResolvers.UserResolver, Connectivity.Request.Vault" />
+          <ObjectResolver Type="Connectivity.Request.Vault.ObjectResolvers.RoleResolver, Connectivity.Request.Vault" />
+          <ObjectResolver Type="Connectivity.Request.Vault.ObjectResolvers.VaultResolver, Connectivity.Request.Vault" />
+        </ObjectResolvers>
+      </ObjectResolverService>
+      <!-- List of registered substitutable entries (names) to be loaded by the 'Substitution Service' -->
+      <SubstitutionService>
+        <Substitutions>
+          <!--Substitutions provided by Connectivity.Request.Vault-->
+          <Substitution Name="UserName" DataType="System.String" Type="Connectivity.Request.Common.Services.XmlSubstitution, Connectivity.Request.Common" />
+          <Substitution Name="Password" DataType="System.String" Type="Connectivity.Request.Common.Services.XmlSubstitution, Connectivity.Request.Common" />
+          <Substitution Name="Server" DataType="System.String" Type="Connectivity.Request.Common.Services.XmlSubstitution, Connectivity.Request.Common" />
+          <Substitution Name="Vault" DataType="System.String" Type="Connectivity.Request.Common.Services.XmlSubstitution, Connectivity.Request.Common" />
+        </Substitutions>
+      </SubstitutionService>
+      <!-- List of Extension Handlers -->
+      <ExtensionHandlerService>
+        <ExtensionHandlers>
+          <!-- IFileClassificationExtensionHandler -->
+          <ExtensionHandler Name="Inventor IFileClassificationExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IFileClassificationExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Inventor.Internal.FileClassificationExtensionHandler, Connectivity.Request.ExtensionHandler.Inventor" Priority="1" Group="Connectivity.Request.ExtensionHandler.Inventor.Internal.InventorExtensionHandlerGroup, Connectivity.Request.ExtensionHandler.Inventor" />
+          <ExtensionHandler Name="Default IFileClassificationExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IFileClassificationExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.Document.Currency.ExtensionHandler.FileClassificationDefaultHandler, Connectivity.Request.Document" Priority="2" />
+          <!-- IBomBuilderExtensionHandler -->
+          <ExtensionHandler Name="Inventor IBomBuilderExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IBomBuilderExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Inventor.Internal.BomBuilderExtensionHandler, Connectivity.Request.ExtensionHandler.Inventor" Priority="1" />
+          <ExtensionHandler Name="Autocad IBomBuilderExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IBomBuilderExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Autocad.Internal.BomBuilderExtensionHandler, Connectivity.Request.ExtensionHandler.Autocad" Priority="1" />
+          <ExtensionHandler Name="Default IBomBuilderExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IBomBuilderExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.Document.Currency.ExtensionHandler.BomBuilderDefaultHandler, Connectivity.Request.Document" Priority="1" />
+          <!-- IUpdateViewExtensionHandler -->
+          <ExtensionHandler Name="Inventor IUpdateViewExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateViewExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Inventor.Internal.UpdateViewExtensionHandler, Connectivity.Request.ExtensionHandler.Inventor" Priority="1" Group="Connectivity.Request.ExtensionHandler.Inventor.Internal.InventorExtensionHandlerGroup, Connectivity.Request.ExtensionHandler.Inventor" />
+          <ExtensionHandler Name="Autocad IUpdateViewExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateViewExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Autocad.Internal.UpdateViewExtensionHandler, Connectivity.Request.ExtensionHandler.Autocad" Priority="2" />
+          <ExtensionHandler Name="Revit IUpdateViewExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateViewExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Revit.Internal.UpdateViewExtensionHandler, Connectivity.Request.ExtensionHandler.Revit" Priority="3" />
+          <ExtensionHandler Name="Default IUpdateViewExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateViewExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.Document.Currency.ExtensionHandler.UpdateViewExtensionHandler, Connectivity.Request.Document" Priority="4" />
+          <!-- IUpdateRevisionBlockHandler -->
+          <ExtensionHandler Name="Inventor IUpdateRevisionBlockExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateRevisionBlockExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Inventor.Internal.UpdateRevisionBlockExtensionHandler, Connectivity.Request.ExtensionHandler.Inventor" Priority="1" Group="Connectivity.Request.ExtensionHandler.Inventor.Internal.InventorExtensionHandlerGroup, Connectivity.Request.ExtensionHandler.Inventor" />
+          <ExtensionHandler Name="Autocad IUpdateRevisionBlockExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateRevisionBlockExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.ExtensionHandler.Autocad.Internal.UpdateRevisionBlockExtensionHandler,  Connectivity.Request.ExtensionHandler.Autocad" Priority="2" />
+          <ExtensionHandler Name="Default IUpdateRevisionBlockExtensionHandler" Interface="Connectivity.Request.Document.Currency.ExtensionHandler.IUpdateRevisionBlockExtensionHandler, Connectivity.Request.Document" Type="Connectivity.Request.Document.Currency.ExtensionHandler.UpdateRevisionBlockExtensionHandler, Connectivity.Request.Document" Priority="3" />
+        </ExtensionHandlers>
+      </ExtensionHandlerService>
+    </RuntimeServiceConfig>
+  </Connectivity.Request.Runtime>
+  <ResolveExtensionHandlerService>
+    <ExtensionHandlers>
+      <ExtensionHandler Name="Inventor Apprentice IResolveExtension" Interface="Connectivity.Resolve.ResolveHelper.IResolveExtension, Connectivity.Resolve.ResolveHelper" Type="Connectivity.Resolve.InvApprenticeExt.ApprenticeExtension, Connectivity.Resolve.InvApprenticeExt" Priority="1" />
+      <ExtensionHandler Name="ACAD IResolveExtension" Interface="Connectivity.Resolve.ResolveHelper.IResolveExtension, Connectivity.Resolve.ResolveHelper" Type="Connectivity.Resolve.AcadExt.AcadExtension, Connectivity.Resolve.AcadExt" Priority="2" />
+      <ExtensionHandler Name="Revit IResolveExtension" Interface="Connectivity.Resolve.ResolveHelper.IResolveExtension, Connectivity.Resolve.ResolveHelper" Type="Connectivity.Resolve.RevitExt.RevitExtension, Connectivity.Resolve.RevitExt" Priority="3" />
+    </ExtensionHandlers>
+  </ResolveExtensionHandlerService>
+  <appSettings>
+    <add key="PeriodInMinutes" value="1" />
+    <!-- WebService timeout (in milliseconds)-->
+    <add key="WebServiceTimeout" value="1000000" />
+    <!-- 1000 secs = 1000000 milli -->
+    <!-- RequestSendTimeout (in minutes)-->
+    <add key="RequestSendTimeout" value="90" />
+    <!-- RequestReceiveTimeout (in minutes)-->
+    <add key="RequestReceiveTimeout" value="90" />
+    <!-- HostServiceSendTimeout (in minutes)-->
+    <add key="HostServiceSendTimeout" value="10" />
+    <!-- HostServiceReceiveTimeout timeout (in minutes)-->
+    <add key="HostServiceReceiveTimeout" value="90" />
+    <!-- PingTimeout timeout (in seconds)-->
+    <add key="PingTimeout" value="30" />
+    <!--
+    0 Update Vault Revision Table if Inventor's version corresponds to the file's last saved version
+    1 Update Vault Revision Table and migrate file
+    Default is 0
+    -->
+    <add key="UpdateRevBlockMigrateLatestINV" value="0" />
+    <add key="InventorUpdateRevBlockCount" value="100" />
+    <add key="InventorDwfPublishCount" value="100" />
+    <add key="TrueViewDwfPublishCount" value="500" />
+    <!--
+    0 This is generally something that might be meaningful to a user if they saw it in log file. It can help the user to know every jobs status.
+    1 This is generally something that might be meaningful to a developer if they saw it in the log file. It can help the developer to diagnose the detailed issues.
+    Default is 0
+    -->
+    <add key="LogLevel" value="0" />
+    <!--The minimum of InventorUpdateRevBlockReleasePeriodInMinutes value is 5 minutes-->
+    <add key="InventorUpdateRevBlockReleasePeriodInMinutes" value="10" />
+    <!--The minimum of InventorDwfPublishReleasePeriodInMinutes value is 5 minutes-->
+    <add key="InventorDwfPublishReleasePeriodInMinutes" value="10" />
+    <!--The minimum of TrueViewDwfPublishReleasePeriodInMinutes value is 5 minutes-->
+    <add key="TrueViewDwfPublishReleasePeriodInMinutes" value="10" />
+    <add key="DataManagement.Common.Logging.ApplicationName" value="JobProcessor" />
+    <add key="DataManagement.Common.Logging.Enabled" value="True" />
+    <add key="DataManagement.Common.Logging.ServiceMachine" value="." />
+    <add key="DataManagement.Common.Logging.LogFile" value="logger.log" />
+    <add key="DataManagement.Common.Logging.SerializeProperties" value="False" />
+    <add key="DataManagement.Common.Logging.Viewer.Path" value="H:\Common\Logging\LoggingBin\MessageViewer\DataManagement.Common.Messaging.Viewer.exe" />
+    <add key="DataManagement.Common.Logging.Viewer.AcceptLocalMessageOnly" value="True" />
+    <add key="DataManagement.Common.Logging.Viewer.Port" value="8080" />
+    <add key="DataManagement.Common.Logging.Viewer.AutoLaunch" value="False" />
+  </appSettings>
+  <microsoft.web.services3>
+    <messaging>
+      <maxMessageLength value="51200">
+      </maxMessageLength>
+      <mtom clientMode="On" />
+    </messaging>
+    <security>
+      <!-- Specifies the time buffer used by WSE to determine when a SOAP message is valid.
+	         set to the max of 24hr in seconds -->
+      <timeToleranceInSeconds value="86400" />
+    </security>
+  </microsoft.web.services3>
+  <startup useLegacyV2RuntimeActivationPolicy="true">
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+</configuration>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- The type of BOM to use in the report -->
+  <!-- Value must be MULTI_LEVEL, FIRST_LEVEL or PARTS_ONLY -->
+  <bomType>MULTI_LEVEL</bomType>
+  
+  <!-- The name of the RDLC file to use to generate the reports -->
+  <reportTemplate>BOM - Multi-Level.rdlc</reportTemplate>
+
+  <!-- The path to the Vault folder where generated reports should be stored. -->
+  <!-- Make sure this folder exists before running Job Processor -->
+  <reportsVaultPath>$/ItemBOMs</reportsVaultPath>
+
+  <!-- Option true/false to attach or update BOM report to item-->
+  <attachUpdateReport>true</attachUpdateReport>
+
+  <!-- Output Format Option -->
+  <!-- Value must be PDF or XLS only -->
+  <ReportOutFormat>XLS</ReportOutFormat>
+  
+  <!-- Option to export report file to external location -->
+  <!-- If path is not empty file will export -->
+  <ReportOutExtLocation>C:\ERPData\</ReportOutExtLocation>
+  
+  <!-- The name of the quick-change state. -->
+  <!-- The BOMReport plug-in needs to be able to move an item into this state, edit the item, and move it back to the previous state. -->
+  <quickChangeState>Quick-Change</quickChangeState>
+  
+  <!-- If false, reports are only generated for Items with children.  If true, a report will be generated for all items. -->
+  <generatePartReports>false</generatePartReports>
+  
+</settings>
