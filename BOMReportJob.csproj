@@ -33,29 +33,20 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autodesk.Connectivity.Explorer.Extensibility">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.Connectivity.Explorer.Extensibility.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Autodesk.Connectivity.Extensibility.Framework">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2018\Explorer\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.JobProcessor.Extensibility">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2018\Explorer\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.Connectivity.WebServices.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2018\Explorer\Autodesk.Connectivity.WebServices.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.DataManagement.Client.Framework.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2018\Explorer\Autodesk.DataManagement.Client.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2017\Explorer\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\Vault Professional 2018\Explorer\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

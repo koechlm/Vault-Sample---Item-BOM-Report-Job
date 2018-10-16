@@ -6,7 +6,7 @@ This utility generates BOM reports through Job Processor.  The reports are rende
 
 REQUIREMENTS:
 ---------------------------------
-- Vault Professional 2016
+- Vault Professional 2018
 - Must have job queue enabled.
 - Must have a “Quick Change” (name to be provided in settings.xml file) state that the plug-in can use to move the item to edit mode.
 - Must have a folder in Vault for storing the generated reports.
@@ -59,3 +59,4 @@ RELEASE NOTES:
 	Error handling - "Item's state could not be changed, e.g. check job user's rights for transition to target state."
 	Error handling - "Item's attached BOM report could not get attached. Check that items are not locked for the job user in the given state Settings.quickChangeState"
 	Error handling - "Item's attached BOM report could not get updated. Check that items are not locked for the job user in the given state Settings.quickChangeState"
+23.0.0.0 - Updated Release 2018, Markus Koechl - forward compatibility for Vault Professional 2018
