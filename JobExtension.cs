@@ -28,7 +28,7 @@ using Autodesk.DataManagement.Client.Framework.Vault.Settings;
 using Autodesk.DataManagement.Client.Framework.Currency;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
-[assembly: ApiVersion("11.0")]
+[assembly: ApiVersion("12.0")]
 [assembly: ExtensionId("267602E2-5DCE-46A5-85A8-3A26FD76D0B5")]
 
 namespace BOMReportJob
@@ -112,7 +112,7 @@ namespace BOMReportJob
             //Item rootItem = ReadBOMData(dataTable, reportParams, itemMasterId, settings.BomType, conn);
 
             //if (!settings.GeneratePartReports && dataTable.Rows.Count <= 1)
-            if (!settings.GeneratePartReports && dataTable.Rows.Count < 1) //changed with built 
+            if (!settings.GeneratePartReports && dataTable.Rows.Count <= 1) //changed with build 24.0.0.1
                     return;  // no BOM data
 
             string rdlcPath = System.IO.Path.Combine(Util.GetAssemblyPath(), settings.ReportTemplate);

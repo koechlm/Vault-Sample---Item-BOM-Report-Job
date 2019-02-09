@@ -60,3 +60,4 @@ RELEASE NOTES:
 	Error handling - "Item's attached BOM report could not get attached. Check that items are not locked for the job user in the given state Settings.quickChangeState"
 	Error handling - "Item's attached BOM report could not get updated. Check that items are not locked for the job user in the given state Settings.quickChangeState"
 23.0.0.0 - Updated Release 2018, Markus Koechl - forward compatibility for Vault Professional 2018
+24.0.0.1 - Updated Release 2019, Markus Koechl - forward compatibility for Vault Professional 2019. Issue with option generatePartReports fixed.
