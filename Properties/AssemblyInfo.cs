@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BOMReportJob 2018")]
+[assembly: AssemblyTitle("BOMReportJob 2019")]
 [assembly: AssemblyDescription("Creates / Attaches BOM Reports")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Autodesk")]
