@@ -16,8 +16,8 @@
   <attachUpdateReport>true</attachUpdateReport>
 
   <!-- Output Format Option -->
-  <!-- Value must be PDF or XLS only -->
-  <ReportOutFormat>XLS</ReportOutFormat>
+  <!-- Value must be PDF or XLS (Excel 2003) or XLSX (Open XML, Excel 2010 and later) only -->
+  <ReportOutFormat>XLSX</ReportOutFormat>
   
   <!-- Option to export report file to external location -->
   <!-- If path is not empty file will export -->

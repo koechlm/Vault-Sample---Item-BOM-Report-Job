@@ -125,6 +125,10 @@ namespace BOMReportJob
             {
                 outPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), rootItem.ItemNum + ".xls");
             }
+            if (settings.ReportOutFormat == "XLSX")
+            {
+                outPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), rootItem.ItemNum + ".xlsx");
+            }
 
             LocalReport report = new LocalReport();
             report.ReportPath = rdlcPath;
@@ -157,7 +161,17 @@ namespace BOMReportJob
                 Warning[] warnings;
                 bytes = report.Render("Excel", null, out mimeType, out encoding, out extension, out streamids, out warnings);
             }
-            
+
+            if (settings.ReportOutFormat == "XLSX")
+            {
+                string mimeType;
+                string encoding;
+                string extension;
+                string[] streamids;
+                Warning[] warnings;
+                bytes = report.Render("Excelopenxml", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+            }
+
             if (System.IO.File.Exists(outPath))
                 System.IO.File.Delete(outPath);
 
