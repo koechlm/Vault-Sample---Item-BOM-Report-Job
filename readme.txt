@@ -47,8 +47,14 @@ NOTES:
 
 RELEASE NOTES:
 ---------------------------------
-1.0.3.0 - Initial Release 2015 R2, Doug Redmond
-21.0.3.0 - Updated Release 2016, Markus Koechl - Changes according API 9.0 change: GetLatestItemInRevisionByItemId(itemID)=removed; new: GetLatestItemByItemMasterId(itemMasterId) additional code to retrieve itemMasterId from job's itemId
+2020.25.0.0 - Updated Release 2020, Markus Koechl - forward compatibility for Vault Professional 2002.
+
+2019.24.1.0 - Updated Release 2019, Markus Koechl - forward compatibility for Vault Professional 2019. 
+	Issue with option generatePartReports fixed.
+	New - Option to export OpenOffice XML format for Excel (xlsx) in addition to PDF and Excel 2003 (xls)
+
+23.0.0.0 - Updated Release 2018, Markus Koechl - forward compatibility for Vault Professional 2018
+
 22.0.4.0 - Updated Release 2017, Markus Koechl - New Features and Error Handling added:
 	New - Option to attach / update report to item (see also requirements in Notes section); now you can just create reports or create and attach them to items.
 	New - Option to export report to external location; if an output path is defined and valid, the report file will copy to this location.
@@ -59,7 +65,7 @@ RELEASE NOTES:
 	Error handling - "Item's state could not be changed, e.g. check job user's rights for transition to target state."
 	Error handling - "Item's attached BOM report could not get attached. Check that items are not locked for the job user in the given state Settings.quickChangeState"
 	Error handling - "Item's attached BOM report could not get updated. Check that items are not locked for the job user in the given state Settings.quickChangeState"
-23.0.0.0 - Updated Release 2018, Markus Koechl - forward compatibility for Vault Professional 2018
-2019.24.1.0 - Updated Release 2019, Markus Koechl - forward compatibility for Vault Professional 2019. 
-	Issue with option generatePartReports fixed.
-	New - Option to export OpenOffice XML format for Excel (xlsx) in addition to PDF and Excel 2003 (xls)
+
+21.0.3.0 - Updated Release 2016, Markus Koechl - Changes according API 9.0 change: GetLatestItemInRevisionByItemId(itemID)=removed; new: GetLatestItemByItemMasterId(itemMasterId) additional code to retrieve itemMasterId from job's itemId
+
+1.0.3.0 - Initial Release 2015 R2, Doug Redmond
