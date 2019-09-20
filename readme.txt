@@ -47,7 +47,7 @@ NOTES:
 
 RELEASE NOTES:
 ---------------------------------
-2020.25.0.0 - Updated Release 2020, Markus Koechl - forward compatibility for Vault Professional 2002.
+2020.25.0.0 - Updated Release 2020, Markus Koechl - forward compatibility for Vault Professional 2020.
 
 2019.24.1.0 - Updated Release 2019, Markus Koechl - forward compatibility for Vault Professional 2019. 
 	Issue with option generatePartReports fixed.
@@ -68,4 +68,4 @@ RELEASE NOTES:
 
 21.0.3.0 - Updated Release 2016, Markus Koechl - Changes according API 9.0 change: GetLatestItemInRevisionByItemId(itemID)=removed; new: GetLatestItemByItemMasterId(itemMasterId) additional code to retrieve itemMasterId from job's itemId
 
-1.0.3.0 - Initial Release 2015 R2, Doug Redmond
+1.0.3.0 - Initial Release 2015 R2, Doug Redmond0
