@@ -2,31 +2,30 @@ BOM REPORT JOB
 
 INTRODUCTION:
 ---------------------------------
-This utility generates BOM reports through Job Processor.  The reports are rendered as PDF files and attached to the item.
+This utility generates BOM reports through Job Processor.  The reports are rendered as PDF, or XLS, or XLSX files and attached to the item.
 
 REQUIREMENTS:
 ---------------------------------
-- Vault Professional 2018
+- Vault Professional 2020 (or previous, if switched to legacy branch)
 - Must have job queue enabled.
 - Must have a “Quick Change” (name to be provided in settings.xml file) state that the plug-in can use to move the item to edit mode.
 - Must have a folder in Vault for storing the generated reports.
 
 TO CONFIGURE:
 ---------------------------------
-1. Run the install.  
-2. Go to the install location, which is %ProgramData%\Autodesk\Vault 2016\Extensions\BOMReportJob.
+1. Extract the Binary Archive (*.7z) to the installation folder according the Vault version: %ProgramData%\Autodesk\Vault 20xx\Extensions\BOMReportJob
+2. Go to the install location, which is %ProgramData%\Autodesk\Vault 20xx\Extensions\BOMReportJob.
 3. Copy to this folder the RDLC file you want to use when generating reports.  You can skip this step if you want to use one of the default RDLC files which are already in the BOMReportJob folder.
 4. Open Settings.xml in a text or XML editor.  Set all the values according to your configuration.  Instructions are in the XML file.
 5. Save Settings.xml and exit the editor.
 6. Exit Job Processor if it is running.
 7. Start Job Processor.
-8. Go to Administration->Job Types.  You should see and entry for  “Autodesk.BOMReport”.
-9. Run the Lifecycle Event Editor and set “Autodesk.BOMReport” as the Job Type on transitions where you want reports to be created.
-9.a If you don’t have the Lifecycle Event Editor, install the SDK.  The SDK installer can be found in the SDK folder of your Vault install path.  Once the SDK is installed, the Lifecycle Event Editor will be in the “util” folder under the SDK install path.
+8. Go to Administration->Job Types.  You should see an entry for  “Autodesk.BOMReport”.
+9. Edit a lifecycle transition, navigate to Custom Job tab and set “Autodesk.BOMReport” as the Job Type on transitions where you want reports to be created.
 10. Start Vault Explorer.
 11. Run an assembly through one of the configured lifecycle transitions.
 12. Check the job queue.  You should see an Autodesk.BOMReport for each item in the assembly.
-13. After the Job Processor handles the jobs, the queue should be empty.  The assembly items should have Reports attached to them.
+13. After the Job Processor handles the jobs, the queue should be empty.  The assembly items should have Reports attached to them; if the option <generatePartReports> is set to True also part items should have reports attached. 
 
 FEATURES:
 ---------------------------------
@@ -39,7 +38,7 @@ FEATURES:
 NOTES:
 ---------------------------------
 - Only one RDLC file can be used.
-- PDF files will be named after the Item Number off of the corresponding Item.
+- Output files will be named after the Item Number off of the corresponding Item.
 - The setting 'attachUpdateReport' (new in 22.0.4.0) requires matching pre-conditions if it is changed after a time: 
 	- existing attachments will no longer update, but not get deleted if the setting is set from true to false
 	- existing reports not being attached will not get attached by the change of the variable from false to true; existing reports need to get attached manually in this case.

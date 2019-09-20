@@ -243,3 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Disclaimer_Autodesk.BOMReport-Sample-2020.txt
+/Autodesk.BOMReportJobSample.7z
