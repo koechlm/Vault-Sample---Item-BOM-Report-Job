@@ -245,3 +245,4 @@ ModelManifest.xml
 .fake/
 /Disclaimer_Autodesk.BOMReport-Sample-2020.txt
 /Autodesk.BOMReportJobSample.7z
+*.7z

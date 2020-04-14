@@ -46,6 +46,7 @@ NOTES:
 
 RELEASE NOTES:
 ---------------------------------
+2020.25.0.1 - Included Report Viewer Library 12.0.0.0 allowing XLSX export on any machine.
 2020.25.0.0 - Updated Release 2020, Markus Koechl - forward compatibility for Vault Professional 2020.
 
 2019.24.1.0 - Updated Release 2019, Markus Koechl - forward compatibility for Vault Professional 2019. 
