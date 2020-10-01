@@ -28,7 +28,7 @@ using Autodesk.DataManagement.Client.Framework.Vault.Settings;
 using Autodesk.DataManagement.Client.Framework.Currency;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
-[assembly: ApiVersion("13.0")]
+[assembly: ApiVersion("14.0")]
 [assembly: ExtensionId("267602E2-5DCE-46A5-85A8-3A26FD76D0B5")]
 
 namespace BOMReportJob
@@ -108,7 +108,7 @@ namespace BOMReportJob
             DataTable dataTable = new DataTable("ReportDataSet");
             Dictionary<string, ReportParameter> reportParams = new Dictionary<string, ReportParameter>();
             Item rootItem = ReadBOMData(dataTable, reportParams, itemId, settings.BomType, conn);
-            
+
             //Item rootItem = ReadBOMData(dataTable, reportParams, itemMasterId, settings.BomType, conn);
 
             //if (!settings.GeneratePartReports && dataTable.Rows.Count <= 1)
@@ -193,7 +193,7 @@ namespace BOMReportJob
                 var folderEntity = new Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities.Folder(conn, vaultFolder);
                 try
                 {
-                    addedFile = conn.FileManager.AddFile(folderEntity, "Created by Job Processor", null, null, FileClassification.None, false, vdfPath);
+                    addedFile = conn.FileManager.AddFile(folderEntity, "BOM Report, created by Job Processor", null, null, FileClassification.None, false, vdfPath);
                 }
                 catch
                 {
