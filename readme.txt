@@ -46,6 +46,7 @@ NOTES:
 
 RELEASE NOTES:
 ---------------------------------
+2022.0.0.1 - updated for 2022 compatibility; minor enhancement on error handling while restoring the Item's previous lifecycle state.
 2021.26.0.0 - Update Release 2021, forward compatibility for Vault Professional 2021
 2020.25.0.1 - Included Report Viewer Library 12.0.0.0 allowing XLSX export on any machine.
 2020.25.0.0 - Updated Release 2020, Markus Koechl - forward compatibility for Vault Professional 2020.

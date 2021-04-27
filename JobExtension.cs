@@ -28,7 +28,7 @@ using Autodesk.DataManagement.Client.Framework.Vault.Settings;
 using Autodesk.DataManagement.Client.Framework.Currency;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
-[assembly: ApiVersion("14.0")]
+[assembly: ApiVersion("15.0")]
 [assembly: ExtensionId("267602E2-5DCE-46A5-85A8-3A26FD76D0B5")]
 
 namespace BOMReportJob
@@ -55,7 +55,7 @@ namespace BOMReportJob
             }
             catch (Exception ex)
             {
-                context.Log(ex, "BOM Report job failure: " + ex.ToString() + " ") ;
+                context.Log(ex, "BOM Report job failure: " + ex.ToString() + " ");
                 return JobOutcome.Failure;
             }
         }
@@ -84,7 +84,7 @@ namespace BOMReportJob
         private void GenerateBOMReport(IJob job, Connection conn)
         {
             long itemId = long.Parse(job.Params["EntityId"]);
-            
+
             string entityClassId = job.Params["EntityClassId"];
             long lcTransId = long.Parse(job.Params["LifeCycleTransitionId"]);
 
@@ -101,7 +101,7 @@ namespace BOMReportJob
 
             Settings settings = Settings.Load();
             if (settings.ReportsVaultPath == null)
-                throw new Exception("reportsVaultPath has not been configured in settings file"); 
+                throw new Exception("reportsVaultPath has not been configured in settings file");
             if (!settings.ReportsVaultPath.EndsWith("/"))
                 settings.ReportsVaultPath = settings.ReportsVaultPath + "/";
 
@@ -113,11 +113,11 @@ namespace BOMReportJob
 
             //if (!settings.GeneratePartReports && dataTable.Rows.Count <= 1)
             if (!settings.GeneratePartReports && dataTable.Rows.Count <= 1) //changed with build 24.0.0.1
-                    return;  // no BOM data
+                return;  // no BOM data
 
             string rdlcPath = System.IO.Path.Combine(Util.GetAssemblyPath(), settings.ReportTemplate);
             string outPath = null;
-            if (settings.ReportOutFormat == "PDF") 
+            if (settings.ReportOutFormat == "PDF")
             {
                 outPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), rootItem.ItemNum + ".pdf");
             }
@@ -135,7 +135,7 @@ namespace BOMReportJob
             report.DataSources.Clear();
             ReportDataSource ds = new ReportDataSource(DATA_SOURCE_NAME, dataTable);
             report.DataSources.Add(ds);
-            
+
             ReportParameterInfoCollection rdlcParams = report.GetParameters();
             List<ReportParameter> usedParams = new List<ReportParameter>();
             foreach (ReportParameterInfo rdlcParam in rdlcParams)
@@ -221,26 +221,26 @@ namespace BOMReportJob
                 }
             }
 
-                // download the file to given location
-                if (settings.ReportOutExtLocation != "")
+            // download the file to given location
+            if (settings.ReportOutExtLocation != "")
+            {
+                VDF.Vault.Settings.AcquireFilesSettings mDownloadSettings = new VDF.Vault.Settings.AcquireFilesSettings(conn);
+                mDownloadSettings.LocalPath = new VDF.Currency.FolderPathAbsolute(settings.ReportOutExtLocation);
+                try
                 {
-                    VDF.Vault.Settings.AcquireFilesSettings mDownloadSettings = new VDF.Vault.Settings.AcquireFilesSettings(conn);
-                    mDownloadSettings.LocalPath = new VDF.Currency.FolderPathAbsolute(settings.ReportOutExtLocation);
-                    try
-                    {
-                        if (mUploadedFile != null)
-                            mDownloadSettings.AddFileToAcquire(mUploadedFile, VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Download);
-                        if (addedFile != null)
-                            mDownloadSettings.AddFileToAcquire(addedFile, VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Download);
+                    if (mUploadedFile != null)
+                        mDownloadSettings.AddFileToAcquire(mUploadedFile, VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Download);
+                    if (addedFile != null)
+                        mDownloadSettings.AddFileToAcquire(addedFile, VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Download);
 
-                        VDF.Vault.Results.AcquireFilesResults mDownLoadResupt = conn.FileManager.AcquireFiles(mDownloadSettings);
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Job could not download report file" + vdfFile);
-                    }
+                    VDF.Vault.Results.AcquireFilesResults mDownLoadResupt = conn.FileManager.AcquireFiles(mDownloadSettings);
                 }
-                
+                catch (Exception)
+                {
+                    throw new Exception("Job could not download report file" + vdfFile);
+                }
+            }
+
             // delete temp report
             System.IO.File.SetAttributes(outPath, System.IO.FileAttributes.Normal);
             System.IO.File.Delete(outPath);
@@ -311,12 +311,20 @@ namespace BOMReportJob
                 catch (Exception)
                 {
                     throw new Exception("Item's attached BOM report could not get updated. Check that items are not locked for the job user in the given state Settings.quickChangeState");
-                }    
-                
+                }
+
                 if (editableItem.LfCyc.LfCycStateId != origState)
                 {
-                    conn.WebServiceManager.ItemService.UpdateItemLifeCycleStates(latestItem.MasterId.ToSingleArray(),
-                        origState.ToSingleArray(), "Moving back to original state after attaching BOM report").First();
+                    try
+                    {
+                        conn.WebServiceManager.ItemService.UpdateItemLifeCycleStates(latestItem.MasterId.ToSingleArray(), 
+                            origState.ToSingleArray(), "Moving back to original state after attaching BOM report").First();
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("The job could not move back the lifecycle state; review the restriction in Vault Client");
+                    }
+
                 }
             }
 
@@ -400,7 +408,7 @@ namespace BOMReportJob
             return root;
         }
 
-        private Item ReadBOMData(DataTable dataTable, Dictionary<string, ReportParameter> reportParams, 
+        private Item ReadBOMData(DataTable dataTable, Dictionary<string, ReportParameter> reportParams,
             long itemId, BOMType bomType, Connection conn)
         {
             long[] m_itemIds = new long[1];
@@ -409,9 +417,9 @@ namespace BOMReportJob
             Item m_Item = m_Items[0];
             long itemMasterId = m_Item.MasterId;
             Item rootItem = conn.WebServiceManager.ItemService.GetLatestItemByItemMasterId(itemMasterId);
-            
+
             // set up the item proeprty columns
-            PropertyDefinitionDictionary itemPropDefs = conn.PropertyManager.GetPropertyDefinitions("ITEM", null, 
+            PropertyDefinitionDictionary itemPropDefs = conn.PropertyManager.GetPropertyDefinitions("ITEM", null,
                 Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.PropertyDefinitionFilter.IncludeAll);
             List<PropertyDefinition> serverProps = itemPropDefs.Values.Where(n => !n.IsCalculated).ToList();
             foreach (PropertyDefinition itemPropDef in serverProps)
@@ -473,22 +481,22 @@ namespace BOMReportJob
             }
 
             // set up the rows
-            long [] itemIds = bom.ItemRevArray.Select(n => n.Id).ToArray();
+            long[] itemIds = bom.ItemRevArray.Select(n => n.Id).ToArray();
             var vdfItems = conn.ItemManager.GetItemsByIterationId(itemIds);
             PropertyValues propValues = conn.PropertyManager.GetPropertyValues(vdfItems.Values, serverProps, null);
-            Item [] latestItems = conn.WebServiceManager.ItemService.GetLatestItemsByItemMasterIds(
+            Item[] latestItems = conn.WebServiceManager.ItemService.GetLatestItemsByItemMasterIds(
                 bom.ItemRevArray.Select(n => n.MasterId).ToArray());
             Dictionary<long, Item> latestItemMap = latestItems.ToDictionary(n => n.MasterId);
 
-            ItemAssocProp [] assocProps = new ItemAssocProp[0];
+            ItemAssocProp[] assocProps = new ItemAssocProp[0];
             if (!bom.ItemAssocArray.IsNullOrEmpty() && !bomRowProps.IsNullOrEmpty())
             {
                 assocProps = conn.WebServiceManager.ItemService.GetItemBOMAssociationProperties(
-                    bom.ItemAssocArray.Select(n => n.Id).ToArray(), 
+                    bom.ItemAssocArray.Select(n => n.Id).ToArray(),
                     bomRowProps.Select(n => n.Id).ToArray());
             }
 
-            ItemFileAssoc [] fileAssocs = conn.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(itemIds, 
+            ItemFileAssoc[] fileAssocs = conn.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(itemIds,
                 ItemFileLnkTypOpt.Primary | ItemFileLnkTypOpt.PrimarySub);
             Dictionary<long, ItemFileAssoc> fileAssocMap = fileAssocs.ToDictionary(n => n.ParItemId);
 
@@ -513,16 +521,16 @@ namespace BOMReportJob
             reportParams.Add(param.Name, param);
         }
 
-        private void ReadBOMRow(DataTable dataTable, Dictionary<string, ReportParameter> reportParams, 
-            BOMRow bomRow, IDictionary<long, Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities.ItemRevision> vdfItems, 
-            PropertyValues propValues, ItemAssocProp [] assocProps, Dictionary<long, AssocPropDef> assocPropDefMap, string rowOrder, 
+        private void ReadBOMRow(DataTable dataTable, Dictionary<string, ReportParameter> reportParams,
+            BOMRow bomRow, IDictionary<long, Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities.ItemRevision> vdfItems,
+            PropertyValues propValues, ItemAssocProp[] assocProps, Dictionary<long, AssocPropDef> assocPropDefMap, string rowOrder,
             Dictionary<long, Item> latestItemMap, Dictionary<long, ItemFileAssoc> fileAssocMap,
             Connection conn)
         {
             Dictionary<PropertyDefinition, PropertyValue> values = new Dictionary<PropertyDefinition, PropertyValue>();
             if (bomRow.Item != null)
                 values = propValues.GetValues(vdfItems[bomRow.Item.Id]);
-            
+
             DataRow dataRow = dataTable.NewRow();
 
             // set item properties
@@ -537,7 +545,7 @@ namespace BOMReportJob
                     ThumbnailInfo thumbnail = valueObj as ThumbnailInfo;
                     valueObj = Convert.ToBase64String(thumbnail.Image);
                 }
-                else if (value.Key.DataType == PropertyDefinition.PropertyDataType.ImageInfo  && valueObj != null)
+                else if (value.Key.DataType == PropertyDefinition.PropertyDataType.ImageInfo && valueObj != null)
                 {
                     try
                     {
@@ -626,7 +634,7 @@ namespace BOMReportJob
                     else
                         dataRow["GroupType"] = Resource.groupTypeManual;
                 }
-                
+
             }
 
             if (bomRow.Item != null)
@@ -672,7 +680,7 @@ namespace BOMReportJob
                 {
                     encodedString += c;
                 }
-                else 
+                else
                 {
                     encodedString += escape;
                 }
