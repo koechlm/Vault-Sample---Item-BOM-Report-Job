@@ -42,7 +42,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\2022\</OutputPath>
+    <OutputPath>bin\x64\Release\2023\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -73,6 +73,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -113,6 +114,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SDK Refs\Autodesk.Connectivity.Extensibility.Framework.dll" />
+    <Content Include="SDK Refs\Autodesk.Connectivity.Extensibility.Framework.XML" />
+    <Content Include="SDK Refs\Autodesk.Connectivity.JobProcessor.Extensibility.dll" />
+    <Content Include="SDK Refs\Autodesk.Connectivity.JobProcessor.Extensibility.XML" />
+    <Content Include="SDK Refs\Autodesk.Connectivity.WebServices.dll" />
+    <Content Include="SDK Refs\Autodesk.Connectivity.WebServices.XML" />
+    <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.dll" />
+    <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.Vault.dll" />
+    <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.Vault.xml" />
+    <Content Include="SDK Refs\Autodesk.DataManagement.Client.Framework.xml" />
     <Content Include="readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BOMReportSampleJob 2022")]
-[assembly: AssemblyDescription("Creates / Attaches BOM Reports")]
+[assembly: AssemblyTitle("Item BOM Report SampleJob 2023")]
+[assembly: AssemblyDescription("Creates / Attaches BOM Reports to Items")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Autodesk")]
-[assembly: AssemblyProduct("BOMReportSampleJob 2022")]
+[assembly: AssemblyProduct("BOMReportSampleJob 2023")]
 [assembly: AssemblyCopyright("Copyright © Autodesk 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2022.0.0.1")]
-[assembly: AssemblyFileVersion("2022.0.0.1")]
+[assembly: AssemblyVersion("2023.0.0.0")]
+[assembly: AssemblyFileVersion("2023.0.0.0")]
