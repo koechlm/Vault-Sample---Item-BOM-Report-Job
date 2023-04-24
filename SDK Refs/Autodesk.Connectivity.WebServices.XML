@@ -745,18 +745,6 @@ State</summary>
     <member name="F:Autodesk.Connectivity.WebServices.JobSyncPropEnum.None">
       <summary>No synchronization.</summary>
     </member>
-    <member name="F:Autodesk.Connectivity.WebServices.JobSyncPropEnum.SyncPropOnly">
-      <summary>Synchronize the property.</summary>
-    </member>
-    <member name="F:Autodesk.Connectivity.WebServices.JobSyncPropEnum.SyncPropAndUpdateView">
-      <summary>Synchronize the property and design view (DWF) file.</summary>
-    </member>
-    <member name="F:Autodesk.Connectivity.WebServices.JobSyncPropEnum.SyncPropAndUpdatePdf">
-      <summary>Synchronize the property and document file.</summary>
-    </member>
-    <member name="F:Autodesk.Connectivity.WebServices.JobSyncPropEnum.SyncPropUpdateViewAndPdf">
-      <summary>Synchronize the property, document file and design view (DWF) file.</summary>
-    </member>
     <member name="T:Autodesk.Connectivity.WebServices.LicensingAgent">
       <summary>Tells whether license is obtained server-side, client-side, or unlicensed (readonly).</summary>
     </member>
@@ -7957,7 +7945,7 @@ of the actual assigned Item</summary>
     <member name="M:Autodesk.Connectivity.WebServices.JobService.UnReserveJobsByClientName(System.String)">
       <summary>Un-reserve all jobs for a given client.</summary>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.JobService.UpdateJobFailure(System.Int64,System.String)">
+    <member name="M:Autodesk.Connectivity.WebServices.JobService.UpdateJobFailure(System.Int64,System.String,System.Boolean)">
       <summary>Inform the job queue that the client was unable to complete the job.</summary>
     </member>
     <member name="M:Autodesk.Connectivity.WebServices.JobService.UpdateJobSuccess(System.Int64)">
@@ -8035,7 +8023,7 @@ of the actual assigned Item</summary>
     <member name="M:Autodesk.Connectivity.WebServices.JobServiceBase.UnReserveJobsByClientName(System.String)">
       <summary>Not intended for public use.</summary>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.JobServiceBase.UpdateJobFailure(System.Int64,System.String)">
+    <member name="M:Autodesk.Connectivity.WebServices.JobServiceBase.UpdateJobFailure(System.Int64,System.String,System.Boolean)">
       <summary>Not intended for public use.</summary>
     </member>
     <member name="M:Autodesk.Connectivity.WebServices.JobServiceBase.UpdateJobSuccess(System.Int64)">
@@ -8327,7 +8315,7 @@ of the actual assigned Item</summary>
         <para>The object for this Life Cycle State.</para>
       </returns>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleService.AddLifeCycleStateTransition(System.Int64,System.Int64,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],System.Boolean)">
+    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleService.AddLifeCycleStateTransition(System.Int64,System.Int64,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],Autodesk.Connectivity.WebServices.RuleSet[],System.Boolean)">
       <summary>
         <para>Adds a transition from one Life Cycle State to another.</para>
       </summary>
@@ -8452,7 +8440,7 @@ of the actual assigned Item</summary>
         <para>The updated life cycle state object.</para>
       </returns>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleService.UpdateLifeCycleStateTransition(System.Int64,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],System.Boolean)">
+    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleService.UpdateLifeCycleStateTransition(System.Int64,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],Autodesk.Connectivity.WebServices.RuleSet[],System.Boolean)">
       <summary>
         <para>Updates a Life Cycle Transition.</para>
       </summary>
@@ -8498,7 +8486,7 @@ of the actual assigned Item</summary>
     <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.AddLifeCycleState(System.Int64,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,Autodesk.Connectivity.WebServices.ACE[],System.String[],System.Boolean,System.Boolean,System.Int32,Autodesk.Connectivity.WebServices.RestrictPurgeOption,Autodesk.Connectivity.WebServices.ItemToFileSecurityModeEnum,Autodesk.Connectivity.WebServices.ACE[],Autodesk.Connectivity.WebServices.FolderFileSecurityModeEnum,Autodesk.Connectivity.WebServices.ACE[])">
       <summary>Not intended for public use.</summary>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.AddLifeCycleStateTransition(System.Int64,System.Int64,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],System.Boolean)">
+    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.AddLifeCycleStateTransition(System.Int64,System.Int64,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],Autodesk.Connectivity.WebServices.RuleSet[],System.Boolean)">
       <summary>Not intended for public use.</summary>
     </member>
     <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.CheckRolePermissions(System.String[],System.String)">
@@ -8552,7 +8540,7 @@ of the actual assigned Item</summary>
     <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.UpdateLifeCycleState(System.Int64,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.String[],Autodesk.Connectivity.WebServices.ACE[],System.Boolean,System.Boolean,System.Int32,Autodesk.Connectivity.WebServices.RestrictPurgeOption,Autodesk.Connectivity.WebServices.ItemToFileSecurityModeEnum,Autodesk.Connectivity.WebServices.ACE[],Autodesk.Connectivity.WebServices.FolderFileSecurityModeEnum,Autodesk.Connectivity.WebServices.ACE[])">
       <summary>Not intended for public use.</summary>
     </member>
-    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.UpdateLifeCycleStateTransition(System.Int64,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],System.Boolean)">
+    <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.UpdateLifeCycleStateTransition(System.Int64,Autodesk.Connectivity.WebServices.BumpRevisionEnum,Autodesk.Connectivity.WebServices.JobSyncPropEnum,Autodesk.Connectivity.WebServices.EnforceChildStateEnum,Autodesk.Connectivity.WebServices.EnforceContentStateEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,Autodesk.Connectivity.WebServices.FileLinkTypeEnum,System.Boolean,System.Boolean,System.Int64[],System.Int64[],Autodesk.Connectivity.WebServices.PropDefCond[],Autodesk.Connectivity.WebServices.RuleSet[],System.Boolean)">
       <summary>Not intended for public use.</summary>
     </member>
     <member name="M:Autodesk.Connectivity.WebServices.LifeCycleServiceBase.UpdateLifeCycleStateTransitionJobTypes(System.Int64,System.String[])">

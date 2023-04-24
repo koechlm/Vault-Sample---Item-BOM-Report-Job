@@ -555,6 +555,9 @@ references. Please run the Update File Reference command on parent file..</summa
     <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Resource.PropertyNonCompliantWriteBackAndFormat">
       <summary>Looks up a localized string similar to Noncompliant policies and equivalence.</summary>
     </member>
+    <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Resource.PropertyWritebackWarning">
+      <summary>Looks up a localized string similar to Files were copied successfully but the property wasn’t created as the property creation is set to “No”..</summary>
+    </member>
     <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Resource.RequiresValueConstraint_RestrictionMessage">
       <summary>Looks up a localized string similar to This property requires a value..</summary>
     </member>
@@ -958,6 +961,9 @@ Most commonly used for web applications.</summary>
     </member>
     <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.CachedObjects.Categories">
       <summary>A cache of all of the available Categories</summary>
+    </member>
+    <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.CachedObjects.FolderImage">
+      <summary>A cache of all of folder imanges cache in ICacheService</summary>
     </member>
     <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.CachedObjects.All">
       <summary>All cached objects</summary>
@@ -2700,6 +2706,10 @@ states as specified.</summary>
       <summary>Gets a copy of the image managed by this ImageInfo.</summary>
       <returns>A copy of the image. The caller is reponsible for calling Dispose on the copied image.</returns>
     </member>
+    <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ImageInfo.GetUpdatedImage">
+      <summary>Returns image according to image receivers</summary>
+      <returns>Image</returns>
+    </member>
     <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ImageInfo.CustomImageReceiver">
       <summary>Should use ImageReceiver inside to get image and than do some modifications (like apply Mask for Category). Has higher priority than ImageReceiver. If it is
 present we should use this func. If object's image doesn't have additional modifications that should be done above original skin image - use ImageReceiver.</summary>
@@ -3248,6 +3258,12 @@ PropertyDefinition</param>
     <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.PropertyDefinitionIds.Server.HasDrawing">
       <summary>The "HasDrawing" property</summary>
     </member>
+    <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.PropertyDefinitionIds.Server.HasMarkup">
+      <summary>The "HasMarkup" property</summary>
+    </member>
+    <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.PropertyDefinitionIds.Server.HasMarkupVer">
+      <summary>The "HasMarkup(Ver)" property</summary>
+    </member>
     <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.PropertyDefinitionIds.Server.HasModelState">
       <summary>A property that indicates whether or not a file has any model state</summary>
     </member>
@@ -3499,12 +3515,19 @@ string which describes the failure.</summary>
       <summary>Creates an instance of a ThumbnailInfo object</summary>
       <param>The type of image managed by this ThumbnailInfoThe byte representation of the thumbnail image</param>
     </member>
+    <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.#ctor(Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.ThumbnailType,Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ImageInfo)">
+      <summary>Creates an instance of a ThumbnailInfo object</summary>
+      <param>The type of image managed by this ThumbnailInfoThumbnail Image Info</param>
+    </member>
     <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.GetImage">
       <summary>Gets a copy of the thumbnail represented as an Image object.</summary>
       <returns>A thumbnail in Image format. The caller is responsible for disposing the image when done.</returns>
     </member>
     <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.Image">
       <summary>Gets or sets the thumbnail image.</summary>
+    </member>
+    <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.ImgInfo">
+      <summary>Thumbnail Image Info</summary>
     </member>
     <member name="P:Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties.ThumbnailInfo.Source">
       <summary>Gets or sets the type of thumbnail image.</summary>
@@ -4907,24 +4930,6 @@ embedded resource. The enum values must start with zero, and then increase by 1<
     <member name="T:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.ImageIds32">
       <summary>Constants for all of the 32x32 images. Each of these constants corresponds do a corresponding embedded resource. The Map below maps the Id to the correct
 embedded resource. The enum values must start with zero, and then increase by 1</summary>
-    </member>
-    <member name="T:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages">
-      <summary>This class encapsulates all of the images that are contained in this assembly. These images will be merged with the master application imagelist, and they can
-be accessed through utility methods provided in this class</summary>
-    </member>
-    <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.RegisterWithImageManager">
-      <summary>Registers the images in this assembly with the image manager. This must be called on initialization before any of the images in this assembly are used</summary>
-    </member>
-    <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.GetImage(Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.ImageIds16)">
-      <summary>Get the image for one of the framework 16x16 images.</summary>
-      <param>the enum value of the image to retrieve the index for</param>
-    </member>
-    <member name="M:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.GetImage(Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.ImageIds32)">
-      <summary>Get the image for one of the framework 32x32 images.</summary>
-      <param>the enum value of the image to retrieve the index for</param>
-    </member>
-    <member name="F:Autodesk.DataManagement.Client.Framework.Vault.Utils.FrameworkVaultImages.ImageCategory">
-      <summary>This category uniquely categorizes all of the images in this assembly.</summary>
     </member>
   </members>
 </doc>

@@ -46,6 +46,7 @@ NOTES:
 
 RELEASE NOTES:
 ---------------------------------
+2024.0.0.0 - updated for 2024 compatibility
 2023.0.0.0 - updated for 2023 compatibility
 2022.0.0.1 - updated for 2022 compatibility; minor enhancement on error handling while restoring the Item's previous lifecycle state.
 2021.26.0.0 - Update Release 2021, forward compatibility for Vault Professional 2021

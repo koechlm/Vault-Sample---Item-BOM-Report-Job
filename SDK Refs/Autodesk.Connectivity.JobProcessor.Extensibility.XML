@@ -73,6 +73,9 @@ Implementations should check to see whether enabling software is installed.</sum
       <summary>Logs an exception.</summary>
       <param>The exception to log.The message Text.</param>
     </member>
+    <member name="P:Autodesk.Connectivity.JobProcessor.Extensibility.IJobProcessorServices.AllowRetry">
+      <summary>Gets / Sets if it's allowed to retry the job in case of failure.</summary>
+    </member>
     <member name="P:Autodesk.Connectivity.JobProcessor.Extensibility.IJobProcessorServices.Connection">
       <summary>Gets a Connection object for communicating with the servers.</summary>
     </member>
@@ -92,9 +95,12 @@ framework. Extension developer doesn't need to take care of that.</summary>
     <member name="T:Autodesk.Connectivity.JobProcessor.Extensibility.JobFrameworkException">
       <summary>An exception to pass back to the application.</summary>
     </member>
-    <member name="M:Autodesk.Connectivity.JobProcessor.Extensibility.JobFrameworkException.#ctor(System.String)">
+    <member name="M:Autodesk.Connectivity.JobProcessor.Extensibility.JobFrameworkException.#ctor(System.String,System.Boolean)">
       <summary>Creates a new exception.</summary>
-      <param>A message describing the error.</param>
+      <param>A message describing the error.A flag describing permission to retry job.</param>
+    </member>
+    <member name="P:Autodesk.Connectivity.JobProcessor.Extensibility.JobFrameworkException.AllowRetry">
+      <summary>Property of permission to retry job</summary>
     </member>
   </members>
 </doc>

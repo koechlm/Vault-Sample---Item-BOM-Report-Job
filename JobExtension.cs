@@ -28,7 +28,7 @@ using Autodesk.DataManagement.Client.Framework.Vault.Settings;
 using Autodesk.DataManagement.Client.Framework.Currency;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
-[assembly: ApiVersion("16.0")]
+[assembly: ApiVersion("17.0")]
 [assembly: ExtensionId("267602E2-5DCE-46A5-85A8-3A26FD76D0B5")]
 
 namespace BOMReportJob
